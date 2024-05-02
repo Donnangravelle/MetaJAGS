@@ -8,7 +8,9 @@
 #' @return Probability statements to be included in the model string
 #' @export
 #' @examples
+#' \dontrun{
 #' add_probability_statements(model_string, prob_conditions, predictor_vars)
+#' }
 
 
 

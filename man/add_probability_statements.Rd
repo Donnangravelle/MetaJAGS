@@ -20,5 +20,7 @@ Probability statements to be included in the model string
 Responsible for adding probability statements to the JAGSmeta model
 }
 \examples{
+\dontrun{
 add_probability_statements(model_string, prob_conditions, predictor_vars)
+}
 }

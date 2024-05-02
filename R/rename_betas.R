@@ -7,7 +7,9 @@
 #' @return Renamed coefficents for the model object
 #' @export
 #' @examples
+#' \dontrun{
 #' rename_betas(samples, predictor_vars)
+#' }
 
 
 

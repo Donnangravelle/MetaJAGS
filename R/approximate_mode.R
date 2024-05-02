@@ -6,8 +6,9 @@
 #' @return mode of alpha distribution
 #' @export
 #' @examples
+#' \dontrun{
 #' approximate_mode(x)
-#'
+#'}
 #'
 #'
 approximate_mode <- function(x) {

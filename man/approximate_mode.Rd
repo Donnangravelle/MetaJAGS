@@ -16,8 +16,9 @@ mode of alpha distribution
 Description of what the function does.
 }
 \examples{
+\dontrun{
 approximate_mode(x)
-
+}
 
 
 }

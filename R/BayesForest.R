@@ -16,19 +16,20 @@
 #' @param x_text_size Size of x-axis tick text
 #' @param x_title_size Size of x-axis title text
 #' @return Forest plots of density curves
-#' @importFrom rjags sapply as.matrix
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr filter rename mutate summarise
-#' @importFrom ggplot2 ggplot geom_density_ridges_gradient geom_point geom_vline labs theme_minimal theme element_text
+#' @importFrom ggplot2 ggplot geom_point geom_vline labs theme_minimal theme element_text
+#' @importFrom ggridges geom_density_ridges_gradient
+#' @importFrom dplyr starts_with %>% everything
 #' @export
 #' @examples
-#'
+#' \dontrun{
 #' BayesForest(model, study_info = "Study_Info",
 #' data = data, dens_color = "skyblue",
 #' point_color = "black", overlap = 1,
 # 'CI_offset = .3, y_text_size = 14, CI_size = 5, x_text_size = 14,
 #' x_title_size = 14, y_title_size = 14)
-#'
+#' }
 #'
 #'
 #'

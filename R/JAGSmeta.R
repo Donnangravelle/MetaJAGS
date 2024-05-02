@@ -11,11 +11,11 @@
 #' @param n_iterations Number of iterations used to generate samples
 #' @param prob_conditions List of probability statements to be estimated for specified parameters
 #' @return MCMC Graphical model
-#' @importFrom rjags jags.model update coda.samples
+#' @importFrom rjags jags.model coda.samples
 #' @importFrom dplyr mutate
-#' @importFrom stats setNames all.vars
 #' @export
 #' @examples
+#' \dontrun{
 #' result <- JAGSmeta(
 #' formula = yi ~ 1 + naming_1 + meaning_1, # Model formula
 #' v = "vi", # Column name for variance
@@ -25,6 +25,7 @@
 #' n_updates = 100000, # Number of updates for burn-in
 #' n_iterations = 100000 # Number of iterations for sampling
 #' )
+#' }
 JAGSmeta <- function(formula, v, studyID, data, n_chains = 3, n_updates = 10000, n_iterations = 10000, prob_conditions = NULL) {
   data$identifier <- as.numeric(as.factor(data[[studyID]]))
 

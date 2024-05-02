@@ -18,5 +18,7 @@ Renamed coefficents for the model object
 Renames parameters of an RJAGS to match the names of the original parameters specified in the model syntax
 }
 \examples{
+\dontrun{
 rename_betas(samples, predictor_vars)
+}
 }

@@ -39,6 +39,7 @@ MCMC Graphical model
 Function for estimating a hierarchical Bayesian Meta-regression using RJAGS
 }
 \examples{
+\dontrun{
 result <- JAGSmeta(
 formula = yi ~ 1 + naming_1 + meaning_1, # Model formula
 v = "vi", # Column name for variance
@@ -48,4 +49,5 @@ n_chains = 5, # Number of MCMC chains
 n_updates = 100000, # Number of updates for burn-in
 n_iterations = 100000 # Number of iterations for sampling
 )
+}
 }

@@ -54,12 +54,12 @@ Forest plots of density curves
 Creates forest plot of effect size estimates at the study level with distributions
 }
 \examples{
-
+\dontrun{
 BayesForest(model, study_info = "Study_Info",
 data = data, dens_color = "skyblue",
 point_color = "black", overlap = 1,
 x_title_size = 14, y_title_size = 14)
-
+}
 
 
 
