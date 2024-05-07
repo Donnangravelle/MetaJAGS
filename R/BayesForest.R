@@ -70,7 +70,9 @@ BayesForest <- function(model,study_info, data, dens_color = "skyblue",point_col
     mutate(study = "mu")
 
   full_alpha <- rbind(mu_alpha_long_renamed, alpha_samples_df)
-  study_mapping <- setNames(data[[study_info]], data$identifier)
+  identifier <-  as.numeric(as.factor(data[[study_info]]))
+
+  study_mapping <- setNames(data[[study_info]], identifier)
 
 
   full_alpha$study <- factor(study_mapping[as.character(full_alpha$study)],
