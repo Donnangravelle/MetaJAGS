@@ -110,10 +110,10 @@ BayesForest <- function(model,study_info, data, dens_color = "skyblue",point_col
     labs(x = "Standardized Mean Difference", y = "Study Information") +
     theme_minimal() +
     theme(legend.position = "none",
-          text = element_text(family = "Times New Roman", face = "bold"),
-          plot.title = element_text(family = "Times New Roman", face = "bold"),
-          axis.title = element_text(family = "Times New Roman"),
-          axis.text = element_text(family = "Times New Roman"),
+          text = element_text(family = "serif", face = "bold"),
+          plot.title = element_text(family = "serif", face = "bold"),
+          axis.title = element_text(family = "serif"),
+          axis.text = element_text(family = "serif"),
           axis.text.y = element_text(size = y_text_size),
           axis.title.y = element_text(size = y_title_size),
           axis.text.x = element_text(size = x_text_size),
@@ -123,7 +123,7 @@ BayesForest <- function(model,study_info, data, dens_color = "skyblue",point_col
                                                    paste0("[", sprintf("%.2f", lower_ci),
                                                           ",", " ", sprintf("%.2f", upper_ci), "]"))),
               hjust = 1, nudge_x = CI_offset,
-              fontface = "bold", family = "Times New Roman", size = CI_size)
+              fontface = "bold", family = "serif", size = CI_size)
 }
 
 
