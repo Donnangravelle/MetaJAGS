@@ -25,9 +25,9 @@
 #' @examples
 #' \dontrun{
 #' BayesForest(model, study_info = "Study_Info",
-#' data = data, dens_color = "skyblue",
+#' data = example_data, dens_color = "skyblue",
 #' point_color = "black", overlap = 1,
-# 'CI_offset = .3, y_text_size = 14, CI_size = 5, x_text_size = 14,
+#' CI_offset = .3, y_text_size = 14, CI_size = 5, x_text_size = 14,
 #' x_title_size = 14, y_title_size = 14)
 #' }
 #'

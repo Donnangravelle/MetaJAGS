@@ -7,13 +7,10 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' mod_1 <- BayesMeta(formula = yi ~ 1+predictor1, v = "vi", studyID = "study_id",
-#'   data = outlier_rm_test, n_chains = 5, n_updates = 10000, n_iterations = 10000,
-#'   prob_conditions = list(
-#'     "mu.alpha" = list("greater" = c(0.2, 0.5),"lesser" = c(-0.2, -0.5), "between" = list(c(-.2,.3))),
-#'     "sd.alpha" = list("greater" = c(0.2, 0.3))))
+#'
+#' JAGS.summary(JAGSmeta_model)
+#'
 #' }
-
 JAGS.summary <- function(mcmc_samples) {
   # Initialize an empty list to store the filtered chains
   filtered_samples <- list()

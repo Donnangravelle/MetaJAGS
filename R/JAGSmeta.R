@@ -17,13 +17,21 @@
 #' @examples
 #' \dontrun{
 #' result <- JAGSmeta(
-#' formula = yi ~ 1 + naming_1 + meaning_1, # Model formula
+#' formula = yi ~ 1 + moderator_1 + moderator_2, # Model formula
 #' v = "vi", # Column name for variance
 #' studyID = "study_id", # Column name for study identifier
-#' data = test_data, # The dataset
+#' data = example_data, # The dataset
 #' n_chains = 5, # Number of MCMC chains
 #' n_updates = 100000, # Number of updates for burn-in
 #' n_iterations = 100000 # Number of iterations for sampling
+#'  prob_conditions = list(
+#' "mu.alpha" = list(
+#'   "greater" =c(0,.2, .5, .8)),
+#' "sd.alpha" = list(
+#'   "lesser" = .1,
+#'   "between" = list(c(.1,.2), c(.2,.5)),
+#'   "greater" = .5)
+#'   )
 #' )
 #' }
 JAGSmeta <- function(formula, v, studyID, data, n_chains = 3, n_updates = 10000, n_iterations = 10000, prob_conditions = NULL) {
