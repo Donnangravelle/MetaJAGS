@@ -4,6 +4,7 @@
 #'
 #' @param mcmc_samples A RJAGS model Object
 #' @return A simplified model summary that excludes estimates at the study level
+#' @importFrom coda mcmc
 #' @export
 #' @examples
 #' \dontrun{
