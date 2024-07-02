@@ -13,7 +13,7 @@
 #' @return MCMC Graphical model
 #' @importFrom rjags jags.model coda.samples
 #' @importFrom dplyr mutate
-#' @importFrom coda as.mcmc
+#' @importFrom coda as.mcmc mcmc
 #' @export
 #' @examples
 #' \dontrun{
