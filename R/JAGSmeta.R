@@ -13,6 +13,7 @@
 #' @return MCMC Graphical model
 #' @importFrom rjags jags.model coda.samples
 #' @importFrom dplyr mutate
+#' @importFrom coda as.mcmc
 #' @export
 #' @examples
 #' \dontrun{
@@ -90,12 +91,11 @@ JAGSmeta <- function(formula, v, studyID, data, n_chains = 3, n_updates = 10000,
   update(jags_model, n_updates)
 
   sample_variables <- get_sample_variables(predictor_vars, prob_conditions)
-  samples <- coda.samples(jags_model, variable.names = sample_variables, n.iter = n_iterations, n.chains=n_chains)
+  samples <- coda.samples(jags_model, variable.names = sample_variables, n.iter = n_iterations, n.chains = n_chains)
 
   renamed_samples <- rename_betas(samples, predictor_vars)
   return(renamed_samples)
 }
-
 
 
 get_sample_variables <- function(predictor_vars, prob_conditions) {
@@ -112,8 +112,8 @@ get_sample_variables <- function(predictor_vars, prob_conditions) {
         thresholds <- conditions[[condition_type]]
         if (condition_type == "between") {
           for (range in thresholds) {
-            low_name = ifelse(range[1] < 0, paste("neg", gsub("\\.", "p", format(abs(range[1]), nsmall = 2)), sep=""), gsub("\\.", "p", format(range[1], nsmall = 2)))
-            high_name = ifelse(range[2] < 0, paste("neg", gsub("\\.", "p", format(abs(range[2]), nsmall = 2)), sep=""), gsub("\\.", "p", format(range[2], nsmall = 2)))
+            low_name <- ifelse(range[1] < 0, paste("neg", gsub("\\.", "p", format(abs(range[1]), nsmall = 2)), sep=""), gsub("\\.", "p", format(range[1], nsmall = 2)))
+            high_name <- ifelse(range[2] < 0, paste("neg", gsub("\\.", "p", format(abs(range[2]), nsmall = 2)), sep=""), gsub("\\.", "p", format(range[2], nsmall = 2)))
             sample_variables <- c(sample_variables, sprintf("%s.between%sAnd%s", param, low_name, high_name))
           }
         } else {
@@ -129,6 +129,5 @@ get_sample_variables <- function(predictor_vars, prob_conditions) {
     }
   }
 
-  return (sample_variables)
+  return(sample_variables)
 }
-
