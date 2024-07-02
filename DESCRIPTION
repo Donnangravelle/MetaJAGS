@@ -12,6 +12,7 @@ Imports:
     ggplot2,
     ggridges,
     rjags,
-    dplyr
+    dplyr,
+    coda
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
