@@ -39,8 +39,10 @@ JAGSmeta <- function(formula, v, studyID, data, n_chains = 3, n_updates = 10000,
   data$identifier <- as.numeric(as.factor(data[[studyID]]))
 
   response_var <- all.vars(formula)[1]
-  predictor_vars <- all.vars(formula)[-1]
-  predictor_vars <- predictor_vars[predictor_vars != "1"] # Remove intercept if specified explicitly
+
+  # Create the model matrix which handles factor variables
+  model_matrix <- model.matrix(formula, data)
+  predictor_vars <- colnames(model_matrix)[-1] # Remove intercept
 
   dat_jags <- list(
     "study" = data$identifier,
@@ -49,8 +51,11 @@ JAGSmeta <- function(formula, v, studyID, data, n_chains = 3, n_updates = 10000,
     "n_effects" = nrow(data),
     "n_studies" = length(unique(data$identifier))
   )
-  for (predictor in predictor_vars) {
-    dat_jags[[predictor]] <- data[[predictor]]
+
+  if (length(predictor_vars) > 0) {
+    for (i in 2:ncol(model_matrix)) { # Skip the intercept column
+      dat_jags[[paste0("X", i-1)]] <- model_matrix[, i]
+    }
   }
 
   model_string <- "model {\n"
@@ -71,7 +76,7 @@ JAGSmeta <- function(formula, v, studyID, data, n_chains = 3, n_updates = 10000,
 
   if (length(predictor_vars) > 0) {
     for (i in 1:length(predictor_vars)) {
-      model_string <- paste0(model_string, " + beta[", i, "] * ", predictor_vars[i], "[i]")
+      model_string <- paste0(model_string, " + beta[", i, "] * X", i, "[i]")
     }
   }
 
@@ -96,7 +101,6 @@ JAGSmeta <- function(formula, v, studyID, data, n_chains = 3, n_updates = 10000,
   renamed_samples <- rename_betas(samples, predictor_vars)
   return(renamed_samples)
 }
-
 
 get_sample_variables <- function(predictor_vars, prob_conditions) {
   sample_variables <- c("mu.alpha", "sd.alpha", "sd.err", "alpha")

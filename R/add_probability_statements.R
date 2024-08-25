@@ -13,7 +13,6 @@
 #' }
 
 
-
 add_probability_statements <- function(model_string, prob_conditions, predictor_vars) {
   for (param in names(prob_conditions)) {
     conditions <- prob_conditions[[param]]
