@@ -12,7 +12,7 @@ rename_betas(samples, predictor_vars)
 \item{predictor_vars}{Predictor variables specified in the model syntax of the JAGSmeta function}
 }
 \value{
-Renamed coefficents for the model object
+Renamed coefficients for the model object
 }
 \description{
 Renames parameters of an RJAGS to match the names of the original parameters specified in the model syntax
