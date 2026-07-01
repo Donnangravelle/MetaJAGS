@@ -5,6 +5,7 @@
 #' @param model RJAGS Model
 #' @param study_info Column with study labels
 #' @param data Data frame with origianl data
+#' @param statistic What measure of central tendency would you like to plot?
 #' @param dens_color Color of density curves
 #' @param point_color Color of point estimates
 #' @param CI_offset Distance of critical intervals from density curves
@@ -25,7 +26,7 @@
 #' @examples
 #' \dontrun{
 #' BayesForest(model, study_info = "Study_Info",
-#' data = example_data, dens_color = "skyblue",
+#' data = example_data, statistic = "mean", dens_color = "skyblue",
 #' point_color = "black", overlap = 1,
 #' CI_offset = .3, y_text_size = 14, CI_size = 5, x_text_size = 14,
 #' x_title_size = 14, y_title_size = 14)
@@ -35,7 +36,7 @@
 #'
 #'
 #'
-BayesForest <- function(model,study_info, data, dens_color = "skyblue",point_color = "black",
+BayesForest <- function(model,study_info, data, statistic = "mean", dens_color = "skyblue",point_color = "black",
                         CI_offset = .75, overlap = 1, trim_percentile = 0.01,
                         y_text_size = 12, y_title_size = 12, CI_size = 12,
                         x_text_size = 12, x_title_size = 12){
@@ -90,13 +91,31 @@ BayesForest <- function(model,study_info, data, dens_color = "skyblue",point_col
   point_estimates <- aggregate(alpha_value ~ study, data = full_alpha, FUN = approximate_mode)
   mu_estimate <- point_estimates %>% filter(study == "\u03BC")
   # Summary for plotting
+  if(statistic == "mean"){
   summary_df <- full_alpha %>%
     group_by(study) %>%
     summarise(
-      mean_alpha = approximate_mode(alpha_value),
+      mean_alpha = mean(alpha_value),
       lower_ci = quantile(alpha_value, probs = 0.025),
       upper_ci = quantile(alpha_value, probs = 0.975)
     )
+  }if(statistic == "median"){
+  summary_df <- full_alpha %>%
+    group_by(study) %>%
+    summarise(
+      mean_alpha = median(alpha_value),
+      lower_ci = quantile(alpha_value, probs = 0.025),
+      upper_ci = quantile(alpha_value, probs = 0.975)
+    )
+  }else(statistic == "mode"){
+    summary_df <- full_alpha %>%
+      group_by(study) %>%
+      summarise(
+        mean_alpha = approximate_mode(alpha_value),
+        lower_ci = quantile(alpha_value, probs = 0.025),
+        upper_ci = quantile(alpha_value, probs = 0.975)
+      )
+  }
 
 
 
